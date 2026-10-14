@@ -40,18 +40,14 @@ You want to launch a production house with a blockbuster movie. Don't delay and 
 
 To import the data create database imdb, use imdb and then use the following code in notebook:
 
-import os
-import time
-import pandas as pd
-from sqlalchemy import create_engine
-from urllib.parse import quote_plus
 
 # MySQL connection details
-DB_USER = ''
-DB_PASSWORD_RAW = ''
-DB_HOST = 'localhost'
-DB_PORT = '3306'
-DB_NAME = 'imdb'
+import os
+from sqlalchemy import create_engine
+
+# Set DATABASE_URL in your local environment.
+database_url = os.environ["DATABASE_URL"]
+engine = create_engine(database_url)
 
 # URL encode password
 DB_PASSWORD = quote_plus(DB_PASSWORD_RAW)

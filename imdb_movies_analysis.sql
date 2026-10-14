@@ -387,9 +387,14 @@ FROM
 SELECT
     m.movie_name,
     r.avg_rating,
-    RANK() OVER (ORDER BY r.avg_rating DESC) AS movie_rank
+    r.num_of_votes,
+    RANK() OVER (
+        ORDER BY r.avg_rating DESC
+    ) AS movie_rank
 FROM movies_table m
-JOIN ratings_table r ON m.movie_id = r.movie_id
+JOIN ratings_table r
+    ON m.movie_id = r.movie_id
+WHERE r.num_of_votes >= 1000
 ORDER BY movie_rank
 LIMIT 10;
 

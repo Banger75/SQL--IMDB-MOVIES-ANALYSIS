@@ -351,7 +351,7 @@ genre_ranks AS (
         RANK() OVER (
             ORDER BY movie_count DESC
         ) AS genre_rank
-    FROM genre_counts
+    FROM genre_movie_counts
 )
 SELECT *
 FROM genre_ranks

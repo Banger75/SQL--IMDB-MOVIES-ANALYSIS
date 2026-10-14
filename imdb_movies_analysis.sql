@@ -337,21 +337,24 @@ ORDER BY avg_duration DESC;
 -- | Thriller | 2050        | 3           |
 -- +----------+-------------+-------------+
 
-WITH genre_movie_counts AS (
+WITH genre_counts AS (
     SELECT
-        TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(g.genres, ',', n.n), ',', -1)) AS genre,
-        COUNT(m.movie_id) AS movie_count
-    FROM movies_table m
-    JOIN genres_table g ON m.movie_id = g.movie_id
-    JOIN (SELECT 1 AS n UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8) n
-    WHERE n.n <= LENGTH(g.genres) - LENGTH(REPLACE(g.genres, ',', '')) + 1
-    GROUP BY genre
+        genres AS genre,
+        COUNT(DISTINCT movie_id) AS movie_count
+    FROM genres_table
+    GROUP BY genres
+),
+genre_ranks AS (
+    SELECT
+        genre,
+        movie_count,
+        RANK() OVER (
+            ORDER BY movie_count DESC
+        ) AS genre_rank
+    FROM genre_counts
 )
-SELECT
-    genre,
-    movie_count,
-    RANK() OVER (ORDER BY movie_count DESC) AS genre_rank
-FROM genre_movie_counts
+SELECT *
+FROM genre_ranks
 WHERE genre = 'Thriller';
 
 

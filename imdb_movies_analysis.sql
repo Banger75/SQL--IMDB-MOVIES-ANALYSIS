@@ -41,22 +41,16 @@ You want to launch a production house with a blockbuster movie. Don't delay and 
 To import the data create database imdb, use imdb and then use the following code in notebook:
 
 
-# MySQL connection details
+# Example Python imports for loading CSV files.
+# Set DATABASE_URL and IMDB_CSV_FOLDER locally.
 import os
+import time
+import pandas as pd
 from sqlalchemy import create_engine
 
-# Set DATABASE_URL in your local environment.
 database_url = os.environ["DATABASE_URL"]
+csv_folder = os.environ["IMDB_CSV_FOLDER"]
 engine = create_engine(database_url)
-
-# URL encode password
-DB_PASSWORD = quote_plus(DB_PASSWORD_RAW)
-
-# Create SQLAlchemy engine
-engine = create_engine(f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
-
-# Path to CSV folder
-csv_folder = r'C:\Users\ajayk\Downloads\imdb_final_data'
 
 start_time = time.time()
 total_rows = 0

@@ -47,8 +47,8 @@ from sqlalchemy import create_engine
 from urllib.parse import quote_plus
 
 # MySQL connection details
-DB_USER = 'root'
-DB_PASSWORD_RAW = 'Ajay@123'
+DB_USER = ''
+DB_PASSWORD_RAW = ''
 DB_HOST = 'localhost'
 DB_PORT = '3306'
 DB_NAME = 'imdb'

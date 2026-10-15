@@ -1,55 +1,66 @@
-# SQL--IMDB-MOVIES-ANALYSIS
-## This repo contain imdb movies detailed analysis with answering 70 question
-# IMDb Movies Data Analysis Using SQL
+# IMDb Movies Data Analysis with SQL
 
-## Project Overview
+An exploratory SQL portfolio project analyzing IMDb movie data through **70 analytical questions**. The project demonstrates relational data exploration, query design, and ways to interpret movie, genre, and rating data.
 
-This project explores IMDb movie data using SQL to investigate movie characteristics, genres, ratings, and relationships between different tables.
+## Project at a glance
 
-The project is organized around 70 analytical questions designed to demonstrate practical SQL skills and structured data exploration.
+| Area | Details |
+| --- | --- |
+| Domain | Movie and entertainment analytics |
+| Database | MySQL |
+| Techniques | Joins, CTEs, aggregations, window functions, rankings, subqueries, indexing |
+| Data | Movie, ratings, genres, names, and role-mapping tables |
+| Deliverable | Annotated SQL analysis and database relationship diagram |
 
-## Project Objectives
+## Questions explored
 
-- Explore and understand IMDb movie datasets.
-- Analyze movie genres and ratings.
-- Investigate relationships between movies and associated records.
-- Develop SQL queries for answering analytical questions.
-- Practice converting raw data into meaningful insights.
+The SQL analysis includes questions such as:
+- How do film counts and ratings vary across genres?
+- Which movies have the highest average ratings, after applying a minimum-vote filter?
+- How can movies and genres be ranked while handling tied results?
+- How do movie attributes and related cast/crew records connect?
+- What patterns appear across movie years, countries, languages, and ratings?
 
-## Technologies Used
+These describe the **types of analyses in the SQL file**, not independently validated conclusions.
 
-- SQL
-- Relational Databases
-- CSV Datasets
-- Entity Relationship Diagrams (ERD/EER)
+## Repository files
 
-## Repository Contents
+- [SQL analysis](imdb_movies_analysis.sql) — SQL statements and annotated analytical questions.
+- [Questions for Analysis](Questions%20for%20Analysis.pdf) — question sheet, if available in the repository.
+- CSV datasets — tabular inputs used for the exercises.
+- Database EER diagram — visual explanation of table relationships (below).
 
-- `imdb_movies_analysis.sql` — SQL analysis queries
-- `genres_table.csv` — Genre data
-- `names_table.csv` — Names data
-- `ratings_table.csv` — Movie rating data
-- `Questions for Analysis.pdf` — Analytical questions
+## SQL techniques demonstrated
 
-## SQL Skills Demonstrated
+- **Joins:** Combine movie, genre, rating, and contributor information.
+- **Aggregations:** Use counts, averages, and grouping for summary analysis.
+- **CTEs and subqueries:** Break multi-step questions into readable parts.
+- **Window functions:** Compare and rank results using `RANK()`, `DENSE_RANK()`, and related functions.
+- **Data exploration:** Examine table structure and basic data characteristics.
+- **Indexing:** Explore indexes used to support query performance.
 
-This project demonstrates SQL-based data exploration and analysis. The individual queries provide examples of the techniques used.
+## Reproduce the analysis
 
-## Project Structure and Data Relationships
+1. Prepare a MySQL database named `imdb` and import the provided data into the corresponding tables.
+2. Open [imdb_movies_analysis.sql](imdb_movies_analysis.sql) in a SQL editor or MySQL Workbench.
+3. Review the setup statements before running them: some statements modify database-wide timeout settings or create indexes, so use a local practice environment.
+4. Execute the analytical queries in sections and inspect the returned tables.
 
-The EER diagram below illustrates the relationships between the database tables.
+**Note:** An optional Python CSV-loading example is included as a comment in the SQL file. It reads `DATABASE_URL` and `IMDB_CSV_FOLDER` from your local environment. Do not commit credentials. The SQL file is a learning/analysis script, not a turnkey migration.
 
-## Findings and Conclusions
+## Data model: EER diagram
 
-This section will summarize the most important analytical findings, supported by query results.
+<img width="1536" height="1024" alt="Entity relationship diagram for IMDb movie analysis tables" src="https://github.com/user-attachments/assets/cdab455d-6938-4a7a-98c4-a7f71f3e6c87" />
 
-## Future Improvements
+## Findings and limitations
 
-- Add selected SQL queries with explanations.
-- Document dataset sources and loading instructions.
-- Present key findings in tables or visualizations.
-- Add practical interpretations of the analytical results.
+This repository shows analytical methods and example queries. **Verified numerical findings are not yet documented** in this README. Query results should be run against the dataset and checked before being presented as business conclusions.
 
-## EER Diagram Of tables
+A useful analytical consideration is the number of votes behind an average movie rating. Applying a minimum-vote filter can avoid placing very sparsely rated movies at the top of a simple average-rating leaderboard; the threshold is a business assumption, not a statistical confidence guarantee.
 
-<img width="1536" height="1024" alt="ERD_Imdb_assignment" src="https://github.com/user-attachments/assets/cdab455d-6938-4a7a-98c4-a7f71f3e6c87" />
+## Planned improvements
+
+- Add screenshots of verified query outputs and five concise insights.
+- State the original dataset provenance and any redistribution permissions.
+- Add a reproducible schema and import instructions.
+- Document important assumptions, validation checks, and query limitations.
